@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Form</title>
+<link rel="stylesheet" href="loginstyle.css">
+<script src="myscripts.js"></script>
+</head>
+<body>
+	<form name= "loginform" action="logincontroller" enctype='multipart/form-data' method="post">
+		
+		<div class="imgcontainer">
+			<div class="imgcontainers">
+				<img src="imga.jpg" alt="Avatar" class="avatar">
+			</div>
+			<div class="container"></div>
+			<label><b>EmailId:</b></label> <input type="text" required
+				placeholder="Enter EmailId" name="mailid"
+				onchange="myFunction(this);" /><br>
+			<div id="feed" style="color: red;"></div>
+			<label><b>BiometricInfo: </b></label> <input
+					type="file" required id ="file" name="filepath" onchange="validate_fileupload();" />
+			<div id="feedback" style="color: red;"></div>
+			<br> <br>
+			<button type="submit" class="registerbtn">Login</button>
+			<p>
+				Don't have Account? <a href="register.html">SignUp</a>
+			</p>
+		</div>
+
+	</form>
+</body>
+</html>
