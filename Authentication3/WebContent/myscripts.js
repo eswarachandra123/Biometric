@@ -2,7 +2,7 @@
 function validate_fileupload() {
 	var uploadField = document.getElementById("file");
 	uploadField.onchange = function() {
-	    if(this.files[0].size > 307200){
+	    if(this.files[0].size > 3072000){
 	       alert("File is too big!");
 	       this.value = "";
 	    };

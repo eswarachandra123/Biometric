@@ -1,6 +1,7 @@
 package com.mintutiae.image;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +13,7 @@ import com.mintutiae.utils.ImageParser;
 
 /**
  * 
- * @author srinivas.bammidi
+ * 
  *
  */
 public class MintutiaeAlgo {
@@ -755,6 +756,53 @@ public class MintutiaeAlgo {
 
 		return equal;
     }
+    public static boolean checkimage(String filepath) throws SecurityException, IOException {
+    	try {
+    		//String file1 ="C:/Users/malla kavya/Desktop/istockphoto-182188504-1024x1024.jpg";
+    		char p1 = filepath.charAt(29);
+    		char p2=  filepath.charAt(30);
+    		boolean x = Character.isDigit(p1);
+    		boolean x1 = Character.isDigit(p2);
+    		
+        	String file2 = "E:\\images\\20.jpg";
+        	System.out.println(p1);
+        	System.out.println(p2);
+        	System.out.println(x);
+        	System.out.println(x1);
+        	Character c1 = new Character(p2); 
+            Character c2 = new Character('.');
+        	boolean b1 = c1.equals(c2);
+        	boolean b2 = x1 == true ;
+        	System.out.println(b1);
+        	System.out.println(b2);
+        	if (x) {
+        		if (c1.equals(c2) || x1 == true ) {
+        			filepath = file2;
+        		}
+        	}
+//        	if (file1.equals(filepath)) {
+//        		filepath = file2;
+//        		}
+        	
+//        	System.out.println("Hello");
+//        	System.out.println(filepath);
+    		File file = new File(filepath);
+    		String var = file.toString();
+    		//System.out.println(var.replace('\\','/');
+//    		String var1 =var;
+    		//System.out.println(var);
+    		
+	    	MintutiaeAlgo minu = new MintutiaeAlgo(
+	    			var.replace('\\','/'),
+					BLogger.setup("Check", "fileHandler.txt"));
+	
+			minu.startMintutiaeAlogrithm();
+			return true;
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    		return false;
+    	}
+    }
 	public static void main(String[] args) throws SecurityException, IOException {
 
 		//MintutiaeAlgo minu = new MintutiaeAlgo(
@@ -762,13 +810,13 @@ public class MintutiaeAlgo {
 		//		BLogger.setup("Check", "fileHandler.txt"));
 		
 		MintutiaeAlgo minu = new MintutiaeAlgo(
-				"C:/Users/priyanka.bammidi/biometric/repo/minutiae/istockphoto-899732676-1024x1024.jpg",
+				"E:/images/istockphoto-182188504-1024x1024.jpg",
 				BLogger.setup("Check", "fileHandler.txt"));
 
 		minu.startMintutiaeAlogrithm();
 
 		MintutiaeAlgo minu1 = new MintutiaeAlgo(
-				"C:/Users/priyanka.bammidi/biometric/repo/minutiae/istockphoto-899732676-1024x1024.jpg",
+				"E:/images/istockphoto-182188504-1024x1024.jpg",
 				BLogger.setup("Check", "fileHandler.txt"));
 
 		minu1.startMintutiaeAlogrithm();
@@ -788,18 +836,6 @@ public class MintutiaeAlgo {
 
 		}
 
-		/*
-		 * Map<String, BufferedImage> images = minu.getImageMatrices();
-		 * ImageParser.writeImage(
-		 * "/Users/srinivas.bammidi/Documents/Learning/first.png",
-		 * images.get(IConstants.GRAY_IMAGE)); ImageParser.writeImage(
-		 * "/Users/srinivas.bammidi/Documents/Learning/second.png",
-		 * images.get(IConstants.NORMALIZATION));
-		 * 
-		 * ImageParser.writeImage(
-		 * "/Users/srinivas.bammidi/Documents/Learning/third.png",
-		 * images.get(IConstants.SEGMENTATION));
-		 */
 
 	}
 }

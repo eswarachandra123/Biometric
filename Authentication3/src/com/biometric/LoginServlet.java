@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import com.biometric.DBConnection;
 import com.mintutiae.image.MintutiaeAlgo;
@@ -40,22 +41,26 @@ public class LoginServlet extends HttpServlet {
 			System.out.println("check");
 			conn = DBConnection.getConnection();
 			System.out.println("check");
-			PreparedStatement ps = conn.prepareStatement("select email, imagepath from registernewuser");
+			PreparedStatement ps = conn.prepareStatement("select email, imagepath from registernewuser where email=? and imagepath=?");
 			ps.setString(1, email);
 			ps.setString(2, path);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				String file1 =path;
-		    	String file2 = rs.getString("path");
-		    	boolean status = MintutiaeAlgo.test(file1, file2);
-		    	if (status) {
-					response.sendRedirect("Logout.jsp");
+//				String file1 =path;
+//		    	String file2 = rs.getString("imagepath");
+//		    	boolean status = MintutiaeAlgo.test(file1, file2);
+//		    	if (status) {
+				HttpSession session = request.getSession(true); // reuse existing
+                // session if exist
+                // or create one
+				session.setAttribute("email", email);
+				response.sendRedirect("Logout.jsp");
 					return;
-		    	}
-		    	else {
-		    		response.sendRedirect("error.html");
-					return;
-		    	}
+//		    	}
+//		    	else {
+//		    		response.sendRedirect("error.html");
+//					return;
+//		    	}
 			}
 			response.sendRedirect("error.html");
 			return;
@@ -63,5 +68,4 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }
